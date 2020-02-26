@@ -66,7 +66,9 @@ class EpisodeViewController: UIViewController, UITableViewDelegate, UITableViewD
                     splitViewController.viewControllers.count > 1 {
                     if let navigationController = splitViewController.viewControllers[1] as? UINavigationController,
                         let detailViewController = navigationController.visibleViewController as? EpisodeDetailViewController {
-                        detailViewController.episode = episodes[0]
+                        if (episodes.count > 0) {
+                            detailViewController.episode = episodes[0]
+                        }
                     }
                 }
                 table.reloadData()
@@ -135,7 +137,7 @@ class EpisodeViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             return cell
         }
-        fatalError("Could not create Account cells")
+        fatalError("Could not create episode cells")
     }
     
     // MARK: - EpisodeTableViewCellDelegate

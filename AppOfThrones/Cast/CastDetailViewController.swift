@@ -1,39 +1,37 @@
 //
-//  EpisodeDetailViewController.swift
+//  CastDetailViewController.swift
 //  AppOfThrones
 //
-//  Created by Fernando Torcelly Garcia on 10/02/2020.
+//  Created by Gerardo Rico Botella on 26/02/2020.
 //  Copyright © 2020 Fernando Torcelly Garcia. All rights reserved.
 //
 
 import UIKit
 
-class EpisodeDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CastDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var table: UITableView!
     
-    var episode: Episode? {
+    var cast: Cast? {
         didSet {
-            self.title = episode?.name
             self.table?.reloadData()
         }
     }
     
-    convenience init(episode: Episode) {
-        self.init(nibName: "EpisodeDetailViewController", bundle: nil)
+    convenience init(cast: Cast) {
+        self.init(nibName: "CastDetailViewController", bundle: nil)
         
-        self.episode = episode
+        self.cast = cast
     }
     
     override func viewDidLoad() {
         self.table.delegate = self
         self.table.dataSource = self
         
-        let thumbNib = UINib.init(nibName: "ThumbnailTableViewCell", bundle: nil)
-        table.register(thumbNib, forCellReuseIdentifier: "ThumbnailTableViewCell")
-        
+        let headerNib = UINib.init(nibName: "ThumbnailTableViewCell", bundle: nil)
+        self.table.register(headerNib, forCellReuseIdentifier: "ThumbnailTableViewCell")
         let infoNib = UINib.init(nibName: "InfoTableViewCell", bundle: nil)
-        table.register(infoNib, forCellReuseIdentifier: "InfoTableViewCell")
+        self.table.register(infoNib, forCellReuseIdentifier: "InfoTableViewCell")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,21 +42,23 @@ class EpisodeDetailViewController: UIViewController, UITableViewDelegate, UITabl
             fatalError("Could not create \(cellId)")
         }
         
-        guard let episode = episode else {
+        guard let cast = cast else {
             return cell
         }
         
         switch indexPath.row {
         case 0:
-            (cell as! ThumbnailTableViewCell).setThumbnail(episode.image)
+            (cell as! ThumbnailTableViewCell).setThumbnail(cast.avatar)
         case 1:
-            (cell as! InfoTableViewCell).setInfo(title: "Name", content: episode.name)
+            (cell as! InfoTableViewCell).setInfo(title: "Name", content: cast.fullname)
         case 2:
-            (cell as! InfoTableViewCell).setInfo(title: "Season", content: String(episode.season))
+            (cell as! InfoTableViewCell).setInfo(title: "Role", content: cast.role)
         case 3:
-            (cell as! InfoTableViewCell).setInfo(title: "Date", content: episode.date)
+            (cell as! InfoTableViewCell).setInfo(title: "Episodes", content: String(cast.episodes != nil ? cast.episodes! : 0))
         case 4:
-            (cell as! InfoTableViewCell).setInfo(title: "Overview", content: episode.overview)
+            (cell as! InfoTableViewCell).setInfo(title: "Birth", content: cast.birth)
+        case 5:
+            (cell as! InfoTableViewCell).setInfo(title: "Birth place", content: cast.placeBirth)
         default:
             return cell
         }
@@ -71,10 +71,10 @@ class EpisodeDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return indexPath.row == 0 ? 350 : UITableView.automaticDimension
     }
 }

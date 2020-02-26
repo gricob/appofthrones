@@ -30,6 +30,15 @@ class CastViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let data = try Data.init(contentsOf: pathURL)
                 let decoder = JSONDecoder()
                 cast = try decoder.decode([Cast].self, from: data)
+                if let splitViewController = self.splitViewController,
+                    splitViewController.viewControllers.count > 1 {
+                    if let navigationController = splitViewController.viewControllers[1] as? UINavigationController,
+                        let detailViewController = navigationController.visibleViewController as? CastDetailViewController {
+                        if cast.count > 0 {
+                            detailViewController.cast = cast[0]
+                        }
+                    }
+                }
                 table.reloadData()
             } catch {
                 fatalError("Could not read the JSON")
@@ -53,7 +62,20 @@ class CastViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cast = self.cast[indexPath.row]
+        
+        if let splitViewController = self.splitViewController,
+            splitViewController.viewControllers.count > 1 {
+            if let navigationController = splitViewController.viewControllers[1] as? UINavigationController,
+                let detailViewController = navigationController.visibleViewController as? CastDetailViewController {
+                detailViewController.cast = cast
+            }
+        } else {
+            let castDetailVC = CastDetailViewController.init(cast: cast)
+            self.navigationController?.pushViewController(castDetailVC, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     // MARK: - UITableViewDatasource
@@ -67,14 +89,13 @@ class CastViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cast.count
     }
     
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CastTableViewCell", for: indexPath) as? CastTableViewCell {
             cell.setCast(cast[indexPath.row])
             cell.delegate = self
             return cell
         }
-        fatalError("Could not create Account cells")
+        fatalError("Could not create cast cells")
     }
     
     // MARK: - CastTableViewCellDelegate

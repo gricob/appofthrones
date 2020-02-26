@@ -8,18 +8,17 @@
 
 import UIKit
 
-class EpisodeHeaderTableViewCell: UITableViewCell {
-    
+class ThumbnailTableViewCell: UITableViewCell {
+ 
     @IBOutlet weak var thumbnail: UIImageView!
     
     override func awakeFromNib() {
         self.selectionStyle = .none
     }
     
-    func setThumbnail(_ thumb: String?) {
+    func setThumbnail(_ thumb: String?) -> Void {
         if let thumb = thumb {
             self.thumbnail.image = UIImage.init(named: thumb)
         }
-        
     }
 }
