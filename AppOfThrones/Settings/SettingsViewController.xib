@@ -65,9 +65,39 @@
                         <action selector="validate:" destination="-1" eventType="touchUpInside" id="GvX-zl-m1q"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHx-xW-xEB">
+                    <rect key="frame" x="20" y="407" width="374" height="68"/>
+                    <color key="backgroundColor" red="0.88500124219999998" green="0.683257699" blue="0.27436178919999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="68" id="AVT-H5-fcG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Clear episode favorites">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clearEpisodeFavorites:" destination="-1" eventType="touchUpInside" id="Jwt-4u-aIr"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="448-8C-I5z">
+                    <rect key="frame" x="20" y="495" width="374" height="68"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="68" id="OPt-MO-boc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Clear episode ratings">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="clearEpisodeRatings:" destination="-1" eventType="touchUpInside" id="kMm-9l-34y"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
             <constraints>
+                <constraint firstItem="WHx-xW-xEB" firstAttribute="top" secondItem="GUL-YW-had" secondAttribute="bottom" constant="60" id="FH6-I3-bhG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GUL-YW-had" secondAttribute="trailing" constant="20" id="Kdj-aW-aQu"/>
                 <constraint firstItem="FTy-Yt-nt5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Og1-ow-5k0"/>
                 <constraint firstItem="ciN-3b-qow" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Stl-gL-kQ2"/>
@@ -75,6 +105,8 @@
                 <constraint firstItem="GUL-YW-had" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="W7o-oI-XwE"/>
                 <constraint firstItem="GUL-YW-had" firstAttribute="top" secondItem="0lE-ir-6Jo" secondAttribute="bottom" constant="24" id="Yzb-An-t2o"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ciN-3b-qow" secondAttribute="trailing" constant="20" id="ZFy-1c-xVb"/>
+                <constraint firstItem="WHx-xW-xEB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="auY-ln-ql5"/>
+                <constraint firstItem="448-8C-I5z" firstAttribute="top" secondItem="WHx-xW-xEB" secondAttribute="bottom" constant="20" id="bSh-m6-E2X"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0lE-ir-6Jo" secondAttribute="trailing" constant="20" id="bg1-s2-08H"/>
                 <constraint firstItem="0lE-ir-6Jo" firstAttribute="top" secondItem="cDv-DY-jwH" secondAttribute="bottom" constant="16" id="dVV-Yl-aMY"/>
                 <constraint firstItem="cDv-DY-jwH" firstAttribute="top" secondItem="ciN-3b-qow" secondAttribute="bottom" constant="8" id="dam-yf-12x"/>
@@ -82,7 +114,10 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cDv-DY-jwH" secondAttribute="trailing" constant="20" id="eN7-sj-Mz0"/>
                 <constraint firstItem="FTy-Yt-nt5" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="fEQ-af-cpC"/>
                 <constraint firstItem="cDv-DY-jwH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="htO-86-15m"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="448-8C-I5z" secondAttribute="trailing" constant="20" id="kBv-Pv-6Rs"/>
                 <constraint firstItem="FTy-Yt-nt5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="phh-bz-BTH"/>
+                <constraint firstItem="448-8C-I5z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="qYK-jS-7zE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WHx-xW-xEB" secondAttribute="trailing" constant="20" id="xcm-CC-D4Z"/>
                 <constraint firstItem="0lE-ir-6Jo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="zcs-5W-oUK"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
