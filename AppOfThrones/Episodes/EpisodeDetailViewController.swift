@@ -56,8 +56,10 @@ class EpisodeDetailViewController: UIViewController, UITableViewDelegate, UITabl
         case 2:
             (cell as! InfoTableViewCell).setInfo(title: "Season", content: String(episode.season))
         case 3:
-            (cell as! InfoTableViewCell).setInfo(title: "Date", content: episode.date)
+            (cell as! InfoTableViewCell).setInfo(title: "Episode", content: String(episode.episode))
         case 4:
+            (cell as! InfoTableViewCell).setInfo(title: "Date", content: episode.date)
+        case 5:
             (cell as! InfoTableViewCell).setInfo(title: "Overview", content: episode.overview)
         default:
             return cell
@@ -71,7 +73,7 @@ class EpisodeDetailViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Cast: Identifiable, Codable {
-    
+class Cast: Identifiable, Codable, CustomStringConvertible, Equatable {
+
     var id: Int
     var avatar: String?
     var fullname: String?
@@ -17,6 +17,17 @@ class Cast: Identifiable, Codable {
     var episodes: Int?
     var birth: String?
     var placeBirth: String?
+    
+    var description: String {
+        return "Cast:\n"
+            + "\tid:\(id)\n"
+            + "\tavatar:\(String(describing: avatar))\n"
+            + "\tfullname:\(String(describing: fullname))\n"
+            + "\trole: \(String(describing: role))\n"
+            + "\tepisodes:\(String(describing: episodes))\n"
+            + "\tbirth:\(String(describing: birth))\n"
+            + "\tplaceBirth:\(String(describing: placeBirth))\n"
+    }
     
     init(id: Int, avatar: String? = nil, fullname: String? = nil, role: String? = nil, episodes: Int? = nil, birth: String? = nil, placeBirth: String? = nil) {
         self.id = id
@@ -27,4 +38,9 @@ class Cast: Identifiable, Codable {
         self.birth = birth
         self.placeBirth = placeBirth
     }
+    
+    static func == (lhs: Cast, rhs: Cast) -> Bool {
+        return lhs.id == rhs.id
+    }
+
 }
