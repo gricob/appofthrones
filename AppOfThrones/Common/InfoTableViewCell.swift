@@ -8,12 +8,7 @@
 
 import UIKit
 
-struct EpisodeInfo {
-    var title: String
-    var content: String?
-}
-
-class EpisodeInfoTableViewCell: UITableViewCell {
+class InfoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
     
@@ -23,8 +18,8 @@ class EpisodeInfoTableViewCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
-    func setInfo(_ info: EpisodeInfo) {
-        self.title.text = info.title
-        self.content.text = info.content
+    func setInfo(title: String, content: String?) {
+        self.title.text = title
+        self.content.text = content
     }
 }
