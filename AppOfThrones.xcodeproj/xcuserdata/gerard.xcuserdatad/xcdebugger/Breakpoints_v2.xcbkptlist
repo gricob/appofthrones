@@ -268,5 +268,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0AF7258B-D1DE-43A8-B191-3313D61505F2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AppOfThrones/Data/DataController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "clearFavorites(ofType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0AF7258B-D1DE-43A8-B191-3313D61505F2 - e8a000eb69d1f6e2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AppOfThrones.DataController.clearFavorites(ofType: Any.Type) -&gt; ()"
+                  moduleName = "AppOfThrones"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gerard/Repositorios/KeepCoding/fundamentosIOS/AppOfThrones/AppOfThrones/Data/DataController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  uuid = "0AF7258B-D1DE-43A8-B191-3313D61505F2 - dd96098fe109ab20"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (AppOfThrones.Favorite) -&gt; Swift.Bool in AppOfThrones.DataController.clearFavorites(ofType: Any.Type) -&gt; ()"
+                  moduleName = "AppOfThrones"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gerard/Repositorios/KeepCoding/fundamentosIOS/AppOfThrones/AppOfThrones/Data/DataController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

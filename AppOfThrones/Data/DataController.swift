@@ -12,9 +12,19 @@ protocol Identifiable {
     var id: Int { get }
 }
 
+struct Favorite: Equatable {
+    
+    var id: Int
+    var type: Any.Type
+    
+    static func == (lhs: Favorite, rhs: Favorite) -> Bool {
+        return lhs.id == rhs.id && lhs.type == rhs.type
+   }
+}
+
 class DataController {
     
-    private var favorite: [Int] = []
+    private var favorites: [Favorite] = []
     private var rating: [Rating] = []
     
     static let shared = DataController()
@@ -23,18 +33,24 @@ class DataController {
     // MARK: - Favorite
 
     func isFavorite<T: Identifiable>(_ value: T) -> Bool {
-        return favorite.contains(value.id)
+        return favorites.contains(Favorite.init(id: value.id, type: T.self))
     }
     
     func addFavorite<T: Identifiable>(_ value: T) {
         if self.isFavorite(value) == false {
-            favorite.append(value.id)
+            favorites.append(Favorite.init(id: value.id, type: T.self))
         }
     }
     
     func removeFavorite<T: Identifiable>(_ value: T) {
-        if let index = favorite.firstIndex(of: value.id) {
-            favorite.remove(at: index)
+        if let index = favorites.firstIndex(of: Favorite.init(id: value.id, type: T.self)) {
+            favorites.remove(at: index)
+        }
+    }
+    
+    func clearFavorites(ofType type: Any.Type) {
+        favorites = favorites.filter { (favorite) -> Bool in
+            return favorite.type != type
         }
     }
  
@@ -60,5 +76,9 @@ class DataController {
             return rating.id == episode.id
         }
         return filtered.first
+    }
+    
+    func clearAllEpisodeRatings() {
+        rating.removeAll()
     }
 }
