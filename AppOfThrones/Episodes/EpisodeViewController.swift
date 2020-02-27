@@ -57,26 +57,16 @@ class EpisodeViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func setupData(season: Int) {
-        if let pathURL = Bundle.main.url(forResource: "season_\(season)", withExtension: "json") {
-            do {
-                let data = try Data.init(contentsOf: pathURL)
-                let decoder = JSONDecoder()
-                episodes = try decoder.decode([Episode].self, from: data)
-                if let splitViewController = self.splitViewController,
-                    splitViewController.viewControllers.count > 1 {
-                    if let navigationController = splitViewController.viewControllers[1] as? UINavigationController,
-                        let detailViewController = navigationController.visibleViewController as? EpisodeDetailViewController {
-                        if (episodes.count > 0) {
-                            detailViewController.episode = episodes[0]
-                        }
-                    }
+        self.episodes = EpisodesRepository.shared.getEpisodes(ofSeason: season)
+        
+        if let splitViewController = self.splitViewController,
+            splitViewController.viewControllers.count > 1 {
+            if let navigationController = splitViewController.viewControllers[1] as? UINavigationController,
+                let detailViewController = navigationController.visibleViewController as? EpisodeDetailViewController {
+                if episodes.count > 0 {
+                    detailViewController.episode = episodes[0]
                 }
-                table.reloadData()
-            } catch {
-                fatalError("Could not read the JSON")
             }
-        } else {
-            fatalError("Could not build the path url")
         }
     }
     
@@ -130,9 +120,11 @@ class EpisodeViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.setEpisode(episode)
             cell.delegate = self
             cell.rateBlock = {
-                let rateViewController = RateViewController.init(withEpisode: episode)
+                let rateViewController = RateViewController.init(withEpisode: episode, confirmed: {() -> Void in
+                    self.table.reloadData()
+                })
                 let navigationController = UINavigationController.init(rootViewController: rateViewController)
-                navigationController.modalPresentationStyle = UIDevice.current.userInterfaceIdiom == .pad ? .formSheet : .fullScreen
+                
                 self.present(navigationController, animated: true, completion: nil)
             }
             return cell

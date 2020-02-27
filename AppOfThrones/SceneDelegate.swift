@@ -25,12 +25,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let castDetailVC = CastDetailViewController.init(nibName: "CastDetailViewController", bundle: nil)
         let houseVC    = HouseViewController.init(nibName: "HouseViewController", bundle: nil)
         let houseDetailVC = HouseDetailViewController.init(nibName: "HouseDetailViewController", bundle: nil)
+        let favoritesVC = FavoritesViewController.init(nibName: "FavoritesViewController", bundle: nil)
         let settingsVC = SettingsViewController.init(nibName: "SettingsViewController", bundle: nil)
 
         // Setup tabbar
         let episodeSplitViewController  = CustomSplitViewController()
         let castSplitViewController     = CustomSplitViewController()
         let houseSplitViewController    = CustomSplitViewController()
+        let favoritesNavigationViewController = UINavigationController(rootViewController: favoritesVC)
         let settingsSplitViewController = CustomSplitViewController()
 
         episodeSplitViewController.viewControllers  = [UINavigationController.init(rootViewController: episodeVC), UINavigationController.init(rootViewController: episodeDetailVC)]
@@ -41,12 +43,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         episodeSplitViewController.tabBarItem  = UITabBarItem.init(title: "Seasons", image: UIImage.init(systemName: "film.fill"), tag: 0)
         castSplitViewController.tabBarItem   = UITabBarItem.init(title: "Cast", image: UIImage.init(systemName: "person.3.fill"), tag: 1)
         houseSplitViewController.tabBarItem   = UITabBarItem.init(title: "Houses", image: UIImage.init(systemName: "shield.lefthalf.fill"), tag: 2)
-        settingsSplitViewController.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage.init(systemName: "gear"), tag: 3)
+        favoritesNavigationViewController.tabBarItem = UITabBarItem.init(title: "Favorites", image: UIImage.init(systemName: "heart.fill"), tag: 3)
+        settingsSplitViewController.tabBarItem = UITabBarItem.init(title: "Settings", image: UIImage.init(systemName: "gear"), tag: 4)
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers  = [episodeSplitViewController,
                                              castSplitViewController,
                                              houseSplitViewController,
+                                             favoritesNavigationViewController,
                                              settingsSplitViewController]
 
         tabBarController.tabBar.barStyle  = .black
