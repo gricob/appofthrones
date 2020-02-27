@@ -53,4 +53,12 @@ class SettingsViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func clearEpisodeFavorites(_ sender: Any) {
+        DataController.shared.clearFavorites(ofType: Episode.self)
+    }
+    
+    @IBAction func clearEpisodeRatings(_ sender: Any) {
+        DataController.shared.clearAllEpisodeRatings()
+    }
 }
