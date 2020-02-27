@@ -52,7 +52,7 @@ class EpisodeTableViewCell: UITableViewCell {
         star05.isHidden = true
     }
     
-    func setRating(_ rating: Double) {
+    func setRating(_ rate: Int) {
         rateButton.isHidden = true
         ratingLabel.isHidden = false
         star01.isHidden = false
@@ -61,21 +61,14 @@ class EpisodeTableViewCell: UITableViewCell {
         star04.isHidden = false
         star05.isHidden = false
         
-        self.setStarImage(star01, rating: rating, minValue: 0)
-        self.setStarImage(star02, rating: rating, minValue: 2)
-        self.setStarImage(star03, rating: rating, minValue: 4)
-        self.setStarImage(star04, rating: rating, minValue: 6)
-        self.setStarImage(star05, rating: rating, minValue: 8)
-    }
-    
-    private func setStarImage(_ imageView: UIImageView, rating: Double, minValue: Double) {
-        if rating >= minValue + 1.0 && rating < minValue + 2.0 {
-            imageView.image = UIImage.init(systemName: "star.lefthalf.fill")
-        } else if rating >= minValue + 2.0 {
-            imageView.image = UIImage.init(systemName: "star.fill")
-        } else {
-            imageView.image = UIImage.init(systemName: "star")
-        }
+        let emptyStar = UIImage.init(systemName: "star")
+        let filledStar = UIImage.init(systemName: "star.fill")
+        
+        star01.image = rate > 0 ? filledStar : emptyStar
+        star02.image = rate > 1 ? filledStar : emptyStar
+        star03.image = rate > 2 ? filledStar : emptyStar
+        star04.image = rate > 3 ? filledStar : emptyStar
+        star05.image = rate > 4 ? filledStar : emptyStar
     }
     
     // MARK: - Setter

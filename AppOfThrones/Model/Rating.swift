@@ -10,7 +10,7 @@ import Foundation
 
 enum Rate {
     case unrated
-    case rated(value: Double)
+    case rated(value: Int)
 }
 
 struct Rating {

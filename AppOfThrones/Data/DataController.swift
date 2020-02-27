@@ -12,14 +12,8 @@ protocol Identifiable {
     var id: Int { get }
 }
 
-struct Favorite: Equatable {
-    
-    var id: Int
-    var type: Any.Type
-    
-    static func == (lhs: Favorite, rhs: Favorite) -> Bool {
-        return lhs.id == rhs.id && lhs.type == rhs.type
-   }
+extension Notification.Name {
+    static let didFavoritesChanged = Notification.Name("DidFavoritesChanged")
 }
 
 class DataController {
@@ -39,12 +33,22 @@ class DataController {
     func addFavorite<T: Identifiable>(_ value: T) {
         if self.isFavorite(value) == false {
             favorites.append(Favorite.init(id: value.id, type: T.self))
+            
+            NotificationCenter.default.post(name: .didFavoritesChanged, object: nil)
         }
     }
     
     func removeFavorite<T: Identifiable>(_ value: T) {
         if let index = favorites.firstIndex(of: Favorite.init(id: value.id, type: T.self)) {
             favorites.remove(at: index)
+            
+            NotificationCenter.default.post(name: .didFavoritesChanged, object: nil)
+        }
+    }
+    
+    func getFavorites(ofType type: Any.Type) -> [Favorite] {
+        return favorites.filter { (favorite) -> Bool in
+            return favorite.type == type
         }
     }
     
@@ -52,11 +56,13 @@ class DataController {
         favorites = favorites.filter { (favorite) -> Bool in
             return favorite.type != type
         }
+        
+        NotificationCenter.default.post(name: .didFavoritesChanged, object: nil)
     }
  
     // MARK: - Rating
     
-    func rateEpisode(_ episode: Episode, value: Double) {
+    func rateEpisode(_ episode: Episode, value: Int) {
         if self.ratingForEpisode(episode) == nil {
             let value = Rating.init(id: episode.id, rate: .rated(value: value))
             rating.append(value)
